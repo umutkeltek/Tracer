@@ -13,15 +13,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1425498891093538944, guid: 68a12e4df063d7746aaf6f55433f147b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 7.1
       objectReference: {fileID: 0}
     - target: {fileID: 1425498891093538944, guid: 68a12e4df063d7746aaf6f55433f147b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.46
+      value: 5.78
       objectReference: {fileID: 0}
     - target: {fileID: 1425498891093538944, guid: 68a12e4df063d7746aaf6f55433f147b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 12.51
       objectReference: {fileID: 0}
     - target: {fileID: 1425498891093538944, guid: 68a12e4df063d7746aaf6f55433f147b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -63,20 +63,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1425498891093539066, guid: 68a12e4df063d7746aaf6f55433f147b, type: 3}
   m_PrefabInstance: {fileID: 5655490041931525298}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &560057760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6752080612238136392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a80e3b9e9f5203498c97ec05316535e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dashForce: 50
-  dashDuration: 0.2
 --- !u!114 &560057761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,4 +78,36 @@ MonoBehaviour:
   movementSpeed: 5
   jumpForce: 10
   mass: 1
-  damping: 0.22
+  damping: 6
+--- !u!114 &2066620669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6752080612238136392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7857cd148611194ca9aaa0b775bd82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashForce: 100
+  dashDuration: 0.1
+  maxBlinks: 3
+  blinkRechargeTime: 3
+--- !u!114 &2066620674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6752080612238136392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a9d81eba25acf41a83e0634874b789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRecallData: 30
+  secondsBetweenData: 0.3
+  recallDuration: 1.25
+  recallData: []

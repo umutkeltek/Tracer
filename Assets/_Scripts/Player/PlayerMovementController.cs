@@ -14,8 +14,6 @@ namespace CreatingCharacters.Player
      [SerializeField] protected float mass = 1f;
      [SerializeField] protected float damping = 5f;
      
-     private float jumpHeight = 1.0f;
-     private float gravityValue = -9.81f;
      private bool groundedPlayer;
      private Vector3 playerVelocity;
      
@@ -39,33 +37,7 @@ namespace CreatingCharacters.Player
      }
  
      protected virtual void Move()
-     {  /*groundedPlayer = characterController.isGrounded;
-         if (groundedPlayer && playerVelocity.y < 0)
-         {
-             playerVelocity.y = 0f;
-         }
-
-         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-         move = transform.TransformDirection(move);
-         characterController.Move(move * Time.deltaTime * movementSpeed);
-
-         if (move != Vector3.zero)
-         {
-             gameObject.transform.forward = move;
-         }
-
-         // Changes the height position of the player..
-         if (Input.GetButtonDown("Jump") && groundedPlayer)
-         {
-             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-         }
-
-         if (!groundedPlayer)
-         {
-             playerVelocity.y += gravityValue * Time.deltaTime;
-         }
-         characterController.Move(playerVelocity * Time.deltaTime);*/
-         
+     {  
          
          if (characterController.isGrounded && velocityY < 0f)
          {
@@ -81,22 +53,9 @@ namespace CreatingCharacters.Player
          {
              velocity += currentImpact;
          }
-         /*if (movementInput != Vector3.zero)
-         {
-             gameObject.transform.forward = movementInput;
-         }*/
          
-         /*if (Input.GetKeyDown(KeyCode.Space)&& characterController.isGrounded)
-         {
-             velocityY += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-             velocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-         }*/
-            
-         /*velocity.y += gravity * Time.deltaTime;
-         velocityY += gravity * Time.deltaTime;*/
          characterController.Move(velocity * Time.deltaTime);
          currentImpact = Vector3.Lerp(currentImpact, Vector3.zero, damping * Time.deltaTime);
-         //transform.Translate(new Vector3(movementInput.x,0f,movementInput.y));
      }
 
      public void ResetImpact()

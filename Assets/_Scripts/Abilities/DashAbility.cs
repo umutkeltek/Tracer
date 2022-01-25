@@ -5,18 +5,19 @@ using CreatingCharacters.Player;
 using UnityEngine;
 
 namespace CreatingCharacters.Abilities
-{   [RequireComponent(typeof(PlayerMovementController))]
+{   
+    [RequireComponent(typeof(PlayerMovementController))]
     public class DashAbility : Ability
     {
-        [SerializeField] private float dashForce;
-        [SerializeField] private float dashDuration;
-        private PlayerMovementController playerMovementController;
+        [SerializeField] protected float dashForce;
+        [SerializeField] protected float dashDuration;
+        protected PlayerMovementController playerMovementController;
         private void Awake()
         {
             playerMovementController = GetComponent<PlayerMovementController>();
         }
         
-        private void Update()
+        protected virtual void Update()
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
