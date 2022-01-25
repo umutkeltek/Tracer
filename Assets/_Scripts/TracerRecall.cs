@@ -15,6 +15,9 @@ namespace CreatingCharacters.Abilities
         private PlayerCameraController playerCameraController;
         private bool canCollectRecallData = true;
         private float currentDataTimer = 0f;
+        public Camera StandartCam;
+        public Camera PostProcessCam;
+        [SerializeField] private ParticleSystem speedLinesParticleSystem;
             
         [System.Serializable]
         private class RecallData
@@ -26,6 +29,12 @@ namespace CreatingCharacters.Abilities
 
         [SerializeField] private List<RecallData> recallData = new List<RecallData>();
 
+        private void Awake()
+        {
+            StandartCam.enabled = true;
+            PostProcessCam.enabled = false;
+        }
+
         private void Start()
         {
             playerCameraController = GetComponentInChildren<PlayerCameraController>();
@@ -34,36 +43,36 @@ namespace CreatingCharacters.Abilities
         private void Update()
         {
             StoreRecallData();
-            
             for(int i = 0; i< recallData.Count - 1; i++)
-            {
+            {   
                 Debug.DrawLine(recallData[i].characterPosition,recallData[i+1].characterPosition);
             }
-
+            
             RecallInput();
+            
         }
 
         private void RecallInput()
         {
             if (Input.GetKeyDown(KeyCode.E))
-            {
+            {   
                 StartCoroutine(Recall());
             }
             
         }
 
         private IEnumerator Recall()
-        {
+        {   PostProcessCamChange();
+            
             playerCameraController.Lock(true);
             canCollectRecallData = false;
-
             float secondsForEachData = recallDuration / recallData.Count;
             Vector3 currentDataPlayerStartPos = transform.position;
             Quaternion currentDataPlayerStartRotation = transform.rotation;
             Quaternion currentDataCameraStartRotation = playerCameraController.transform.rotation;
 
             while (recallData.Count > 0)
-            {
+            {   
                 float t = 0;
                 while (t<secondsForEachData)
 
@@ -88,6 +97,8 @@ namespace CreatingCharacters.Abilities
             }
             playerCameraController.Lock(false);
             canCollectRecallData = true;
+            BackToNormal();
+            
         }
 
         private void StoreRecallData()
@@ -117,6 +128,19 @@ namespace CreatingCharacters.Abilities
                 cameraRotation = playerCameraController.transform.rotation
             };
         }
+
+        
+        public void PostProcessCamChange()
+        {   speedLinesParticleSystem.Play();
+            StandartCam.enabled = false;
+            PostProcessCam.enabled = true;
+        }
+        public void BackToNormal()
+        {   speedLinesParticleSystem.Stop();
+            StandartCam.enabled = true;
+            PostProcessCam.enabled = false;
+        }
+        
     } 
 }
 

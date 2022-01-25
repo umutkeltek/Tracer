@@ -8,8 +8,11 @@ namespace CreatingCharacters.Abilities
 {
     [RequireComponent(typeof(PlayerMovementController))]
     public class TracerBlink : DashAbility
-
-    {
+    
+    {   public Camera StandartCam;
+        public Camera PostProcessCam;
+        [SerializeField] private ParticleSystem speedLinesParticleSystem;
+        
         [SerializeField] private int maxBlinks = 3;
         [SerializeField] private float blinkRechargeTime;
         private int remainingBlinks = 3;
@@ -55,8 +58,18 @@ namespace CreatingCharacters.Abilities
             
             yield return new WaitForSeconds(dashDuration);
             playerMovementController.ResetImpact();
-            
-            
+
         }
+        public void PostProcessCamChange()
+        {   speedLinesParticleSystem.Play();
+            StandartCam.enabled = false;
+            PostProcessCam.enabled = true;
+        }
+        public void BackToNormal()
+        {   speedLinesParticleSystem.Stop();
+            StandartCam.enabled = true;
+            PostProcessCam.enabled = false;
+        }
+
     }
 }

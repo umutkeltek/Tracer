@@ -12,6 +12,7 @@ public class PlayerCameraController : MonoBehaviour
     private Vector2 smoothedVelocity;
     private Vector2 currentLookingDirection;
     private bool isLocked = false;
+    
     private void Awake()
     {
         playerTranform = transform.root;
