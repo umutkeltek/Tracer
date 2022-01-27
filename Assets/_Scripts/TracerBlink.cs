@@ -40,11 +40,12 @@ namespace CreatingCharacters.Abilities
 
         protected override IEnumerator Dash()
         {
+            
             if (remainingBlinks <= 0)
-            {
+            {   BackToNormal();
                 yield break;
             }
-
+            PostProcessCamChange();
             remainingBlinks--;
             Vector3 movementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
             
@@ -58,7 +59,7 @@ namespace CreatingCharacters.Abilities
             
             yield return new WaitForSeconds(dashDuration);
             playerMovementController.ResetImpact();
-
+            BackToNormal();
         }
         public void PostProcessCamChange()
         {   speedLinesParticleSystem.Play();
